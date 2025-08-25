@@ -9,7 +9,6 @@ import newArrival2 from "../../assets/newArrival2.jpg";
 import { toast } from "sonner";
 import ProductGrid from "./ProductGrid";
 
-
 const selectedProduct = {
   name: "Stylish Jacket",
   price: 120,
@@ -24,63 +23,40 @@ const selectedProduct = {
     { url: newArrival10, altText: "Stylish Jacket 2" },
   ],
 };
+
 const similarProducts = [
   {
     _id: "1",
     name: "men's outfit",
     price: 120,
-    images: [
-      {
-        url: maylike1,
-        altText: "men's outfit",
-      },
-    ],  
+    images: [{ url: maylike1, altText: "men's outfit" }],
   },
-   {
+  {
     _id: "2",
     name: "men's outfit",
-    price: 120,
-    images: [
-      {
-        url: maylike2,
-        altText: "men's outfit",
-      },
-    ],  
+    price: 90,
+    images: [{ url: maylike2, altText: "men's outfit" }],
   },
-  
-   {
+  {
+    _id: "3",
+    name: "men's outfit",
+    price: 160,
+    images: [{ url: maylike4, altText: "men's outfit" }],
+  },
+  {
     _id: "4",
     name: "men's outfit",
-    price: 120,
-    images: [
-      {
-        url: maylike4,
-        altText: "men's outfit",
-      },
-    ],  
+    price: 140,
+    images: [{ url: newArrival2, altText: "men's outfit" }],
   },
-  
-   {
-    _id: "4",
-    name: "men's outfit",
-    price: 120,
-    images: [
-      {
-        url: newArrival2,
-        altText: "men's outfit",
-      },
-    ],  
-  },
-  
-  
-]
+];
 
 const ProductDetails = () => {
-  const [mainImage, setMainImage] = useState("");
+  const [mainImage, setMainImage] = useState(null); // null instead of ""
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [isButtonDisabled, setIsButtonDisabled] =useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   useEffect(() => {
     if (selectedProduct?.images?.length > 0) {
@@ -89,22 +65,22 @@ const ProductDetails = () => {
   }, []);
 
   const increaseQuantity = () => setQuantity((q) => q + 1);
-  const decreaseQuantity = () =>
-    setQuantity((q) => (q > 1 ? q - 1 : 1));
+  const decreaseQuantity = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
 
   const handleAddToCart = () => {
-    if(!selectedColor || !selectedSize){
-      toast.error("Please select size and color before adding to cart",{ duration: 1000 });
+    if (!selectedColor || !selectedSize) {
+      toast.error("Please select size and color before adding to cart", {
+        duration: 1000,
+      });
       return;
     }
     setIsButtonDisabled(true);
 
-    setTimeout(()=>{
-      toast.success("Product added to cart!",{ duration: 1000 });
+    setTimeout(() => {
+      toast.success("Product added to cart!", { duration: 1000 });
       setIsButtonDisabled(false);
-    },500)
-  }
-
+    }, 500);
+  };
 
   return (
     <div className="p-6">
@@ -115,14 +91,12 @@ const ProductDetails = () => {
             {selectedProduct.images.map((image, index) => (
               <img
                 key={index}
-                src={image.url}
+                src={image.url || "/fallback.jpg"}
                 alt={image.altText || `thumbnail ${index}`}
                 className={`w-24 h-24 object-cover cursor-pointer rounded-lg border ${
-                  mainImage === image.url
-                    ? "border-black"
-                    : "border-gray-300"
+                  mainImage === image.url ? "border-black" : "border-gray-300"
                 }`}
-                onClick={() => setMainImage(image.url)}
+                onClick={() => image.url && setMainImage(image.url)}
               />
             ))}
           </div>
@@ -130,11 +104,17 @@ const ProductDetails = () => {
           {/* main image */}
           <div className="md:w-1/2">
             <div className="mb-4">
-              <img
-                src={mainImage}
-                alt="main product"
-                className="w-full h-auto object-cover rounded-lg"
-              />
+              {mainImage ? (
+                <img
+                  src={mainImage}
+                  alt="main product"
+                  className="w-full h-auto object-cover rounded-lg"
+                />
+              ) : (
+                <div className="w-full h-96 flex items-center justify-center bg-gray-200 text-gray-500 rounded-lg">
+                  No Image
+                </div>
+              )}
             </div>
           </div>
 
@@ -143,14 +123,12 @@ const ProductDetails = () => {
             {selectedProduct.images.map((image, index) => (
               <img
                 key={index}
-                src={image.url}
+                src={image.url || "/fallback.jpg"}
                 alt={image.altText || `thumbnail ${index}`}
                 className={`w-24 h-24 object-cover cursor-pointer rounded-lg border ${
-                  mainImage === image.url
-                    ? "border-black"
-                    : "border-gray-300"
+                  mainImage === image.url ? "border-black" : "border-gray-300"
                 }`}
-                onClick={() => setMainImage(image.url)}
+                onClick={() => image.url && setMainImage(image.url)}
               />
             ))}
           </div>
@@ -234,11 +212,16 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            <button onClick={handleAddToCart} 
-            disabled={isButtonDisabled}
-            className={`bg-black text-white py-2 px-6 rounded w-full mb-4 ${isButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-800'}`}>
-
-              {isButtonDisabled ? 'Adding...' : "ADD TO CART"}
+            <button
+              onClick={handleAddToCart}
+              disabled={isButtonDisabled}
+              className={`bg-black text-white py-2 px-6 rounded w-full mb-4 ${
+                isButtonDisabled
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-gray-800"
+              }`}
+            >
+              {isButtonDisabled ? "Adding..." : "ADD TO CART"}
             </button>
 
             {/* Product Characteristics */}
@@ -255,10 +238,12 @@ const ProductDetails = () => {
                     <td className="py-1">{selectedProduct.material}</td>
                   </tr>
                 </tbody>
-              </table>
+              </table>2
             </div>
           </div>
         </div>
+
+        {/* Similar Products */}
         <div className="mt-20">
           <h2 className="text-2xl text-center font-medium mb-4">
             You May Also Like

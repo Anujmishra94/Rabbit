@@ -21,7 +21,7 @@ const NewArrivals = () => {
     {
       _id: "1",
       name: "stylish jacket",
-      price: 120,
+      price: 130,
       images: [
         {
           url: newArrival1,
@@ -32,7 +32,7 @@ const NewArrivals = () => {
     {
       _id: "2",
       name: "stylish jacket",
-      price: 120,
+      price: 160,
       images: [
         {
           url: newArrival2,
