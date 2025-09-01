@@ -13,6 +13,7 @@ import womenCollection6 from '../assets/womenCollection6.jpg'
 import womenCollection7 from '../assets/womenCollection7.jpg'
 import womenCollection8 from '../assets/womenCollection8.jpg'
 import FeaturedCollection from './../Component/Products/FeaturedCollection';
+import FeaturesSection from '../Component/Products/FeaturesSection'
 
 
 
@@ -127,6 +128,7 @@ const Home = () => {
         <ProductGrid products={placeholderProducts} />
       </div>
       <FeaturedCollection/>
+      <FeaturesSection/>
     </div>
   )
 }
