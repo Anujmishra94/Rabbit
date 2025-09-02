@@ -1,22 +1,19 @@
-import React from 'react'
-import Hero from '../Component/Layout/Hero'
-import GenderCollectionSection from '../Component/Products/GenderCollectionSection'
-import NewArrivals from '../Component/Products/NewArrivals'
-import ProductDetails from '../Component/Products/ProductDetails'
-import ProductGrid from '../Component/Products/ProductGrid'
-import womenCollection1 from '../assets/womenCollection1.jpg'
-import womenCollection2 from '../assets/womenCollection2.jpg'
-import womenCollection3 from '../assets/womenCollection3.jpg'
-import womenCollection4 from '../assets/womenCollection4.jpg'
-import womenCollection5 from '../assets/womenCollection5.jpg'
-import womenCollection6 from '../assets/womenCollection6.jpg'
-import womenCollection7 from '../assets/womenCollection7.jpg'
-import womenCollection8 from '../assets/womenCollection8.jpg'
-import FeaturedCollection from './../Component/Products/FeaturedCollection';
-import FeaturesSection from '../Component/Products/FeaturesSection'
-
-
-
+import React from "react";
+import Hero from "../Component/Layout/Hero";
+import GenderCollectionSection from "../Component/Products/GenderCollectionSection";
+import NewArrivals from "../Component/Products/NewArrivals";
+import ProductDetails from "../Component/Products/ProductDetails";
+import ProductGrid from "../Component/Products/ProductGrid";
+import womenCollection1 from "../assets/womenCollection1.jpg";
+import womenCollection2 from "../assets/womenCollection2.jpg";
+import womenCollection3 from "../assets/womenCollection3.jpg";
+import womenCollection4 from "../assets/womenCollection4.jpg";
+import womenCollection5 from "../assets/womenCollection5.jpg";
+import womenCollection6 from "../assets/womenCollection6.jpg";
+import womenCollection7 from "../assets/womenCollection7.jpg";
+import womenCollection8 from "../assets/womenCollection8.jpg";
+import FeaturedCollection from "./../Component/Products/FeaturedCollection";
+import FeaturesSection from "../Component/Products/FeaturesSection";
 
 const placeholderProducts = [
   {
@@ -65,7 +62,7 @@ const placeholderProducts = [
   },
   {
     _id: "5",
-    name:  "women's outfit",
+    name: "women's outfit",
     price: 130,
     images: [
       {
@@ -76,7 +73,7 @@ const placeholderProducts = [
   },
   {
     _id: "6",
-    name:  "women's outfit",
+    name: "women's outfit",
     price: 140,
     images: [
       {
@@ -87,7 +84,7 @@ const placeholderProducts = [
   },
   {
     _id: "7",
-    name:  "women's outfit",
+    name: "women's outfit",
     price: 180,
     images: [
       {
@@ -98,7 +95,7 @@ const placeholderProducts = [
   },
   {
     _id: "8",
-    name:  "women's outfit",
+    name: "women's outfit",
     price: 190,
     images: [
       {
@@ -106,20 +103,18 @@ const placeholderProducts = [
         altText: "product 8",
       },
     ],
-  }
-
-
-]; 
+  },
+];
 const Home = () => {
   return (
     <div>
       <Hero />
-      <GenderCollectionSection/>
-      <NewArrivals/>
+      <GenderCollectionSection />
+      <NewArrivals />
 
       {/* Best Seller */}
       <h2 className="text-3xl text-center font-bold mb-4"> Best Seller</h2>
-      <ProductDetails/>
+      <ProductDetails />
 
       <div className="container mx-auto">
         <h2 className="text-3xl text-center font-bold mb-4">
@@ -127,10 +122,10 @@ const Home = () => {
         </h2>
         <ProductGrid products={placeholderProducts} />
       </div>
-      <FeaturedCollection/>
-      <FeaturesSection/>
+      <FeaturedCollection />
+      <FeaturesSection />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
