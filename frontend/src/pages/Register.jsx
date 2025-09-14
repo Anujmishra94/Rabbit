@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import login from "../assets/login.webp";
+import RegisterImage from "../assets/register.webp"; // Renamed import
 
-const Register = () => {
+const RegisterPage = () => {
+  // Renamed component
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('User Registered:',{name, email, password});
+  };
 
   return (
     <div className="flex">
       {/* Left Side Form */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 md:p-12">
-        <form className="w-full max-w-md bg-white p-8 rounded-lg border shadow-sm">
+        <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-8 rounded-lg border shadow-sm">
           <div className="flex justify-center mb-6">
             <h2 className="text-xl font-medium">Rabbit</h2>
           </div>
           <h2 className="text-xl font-bold text-center mb-6">Hey there!</h2>
-          <p className="text-center mb-6">
-            Login to your account to continue
-          </p>
+          <p className="text-center mb-6">Create your account to continue</p>
           {/* name */}
-           <div className="mb-4">
+          <div className="mb-4">
             <label className="block text-sm font-semibold mb-2">Name</label>
             <input
               type="name"
@@ -30,7 +34,6 @@ const Register = () => {
               placeholder="Enter your name"
             />
           </div>
-
 
           {/* Email */}
           <div className="mb-4">
@@ -66,9 +69,9 @@ const Register = () => {
 
           {/* Register Link */}
           <p className="mt-6 text-center text-sm">
-            Don't have an account?{" "}
-            <Link to="/register" className="text-blue-500">
-              Register
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-500">
+              Login
             </Link>
           </p>
         </form>
@@ -78,8 +81,8 @@ const Register = () => {
       <div className="hidden md:block md:w-1/2 bg-gray-800">
         <div className="h-full flex flex-col justify-center">
           <img
-            src={login}
-            alt="Login to account"
+            src={RegisterImage} // Used renamed import
+            alt="Register" // Changed alt text for clarity
             className="h-[750px] w-full object-cover"
           />
         </div>
@@ -88,4 +91,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage; // Exported renamed component
